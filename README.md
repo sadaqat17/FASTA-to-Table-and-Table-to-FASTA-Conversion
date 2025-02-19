@@ -20,6 +20,10 @@ Before running these scripts, ensure you have Python installed and the necessary
 
 pip install biopython
 
+**Clone repository:**
+
+git clone https://github.com/sadaqat17/FASTA-to-Table-and-Table-to-FASTA-Conversion.git
+
 **Scripts**
 
 **1. FASTA to CSV Conversion**
