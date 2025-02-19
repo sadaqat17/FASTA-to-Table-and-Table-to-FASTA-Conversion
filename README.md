@@ -14,8 +14,8 @@ Before running these scripts, ensure you have Python installed and the necessary
 -Python 3.x (preferably 3.6+)
 -Biopython library
 
-**To install the required library, run:**
-'''bash
+**To install the required library**
+
 pip install biopython
 
 **Scripts**
@@ -23,77 +23,36 @@ pip install biopython
 **1. FASTA to CSV Conversion**
 Description: Converts a FASTA file into a CSV table. The CSV will contain two columns:
 
-Accession: Sequence ID (or header)
-Sequence: The sequence string
-Usage:
+**Accession:** Sequence ID (or header)
 
-bash
-Copy
+**Sequence:** The sequence string
+
+**Usage:**
+
 python Fasta_to_table_convert.py -i input.fasta -o output.csv
-Arguments:
+
+
+**Arguments:**
 
 -i or --input: Path to the input FASTA file.
+
 -o or --output: Path where the output CSV file will be saved.
-Example:
 
-bash
-Copy
-python Fasta_to_table_convert.py -i input.fasta -o output.csv
-If the input file input.fasta is as follows:
+**2. CSV to FASTA Conversion**
+Description: Converts a CSV or Table file into a FASTA table. 
 
-shell
-Copy
->seq1
-ATGCGTAC
->seq2
-GGCTAGTC
->seq3
-TACGATCG
-The output output.csv will be:
+**Usage:** 
 
-python
-Copy
-Accession,Sequence
-seq1,ATGCGTAC
-seq2,GGCTAGTC
-seq3,TACGATCG
-2. CSV to FASTA Conversion
-Description: Converts a CSV file containing two columns (Accession and Sequence) into a FASTA file. The CSV should have:
-
-Accession: Sequence ID
-Sequence: The sequence string
-Usage:
-
-bash
-Copy
 python Table_to_fasta_convert.py -i input.csv -o output.fasta
-Arguments:
+
+**Arguments:**
 
 -i or --input: Path to the input CSV file.
+
 -o or --output: Path where the output FASTA file will be saved.
-Example:
 
-bash
-Copy
-python Table_to_fasta_convert.py -i input.csv -o output.fasta
-If the input file input.csv looks like:
+**Notes:**
 
-python
-Copy
-Accession,Sequence
-seq1,ATGCGTAC
-seq2,GGCTAGTC
-seq3,TACGATCG
-The output output.fasta will be:
+-Ensure that your FASTA file uses the correct format, with each sequence beginning with a > followed by the accession ID and the sequence on the next line(s).
 
-shell
-Copy
->seq1
-ATGCGTAC
->seq2
-GGCTAGTC
->seq3
-TACGATCG
-Notes
-Ensure that your FASTA file uses the correct format, with each sequence beginning with a > followed by the accession ID and the sequence on the next line(s).
-The CSV file for the CSV to FASTA conversion should have two columns: the first column should be the accession and the second column should be the sequence string.
+-The CSV file for the CSV to FASTA conversion should have two columns: the first column should be the accession and the second column should be the sequence string.
