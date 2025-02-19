@@ -1,19 +1,20 @@
-**Sequence Format Conversion Scripts**
+**Sequence Format Conversion Scripts:**
+
 This repository contains Python scripts to convert biological sequence data between FASTA and CSV formats.
 
-Features
-FASTA to CSV: Converts a FASTA file into a CSV file containing accession IDs and sequences.
-CSV to FASTA: Converts a CSV file containing accession IDs and sequences back into FASTA format.
-Prerequisites
+**Features:**
+**FASTA to CSV:** Converts a FASTA file into a CSV file containing accession IDs and sequences.
+**CSV to FASTA:** Converts a CSV file containing accession IDs and sequences back into FASTA format.
+
+**Prerequisites:**
 Before running these scripts, ensure you have Python installed and the necessary dependencies:
+-Python 3.x (preferably 3.6+)
+-Biopython library
 
-Python 3.x (preferably 3.6+)
-Biopython library
-To install the required library, run:
-
+**To install the required library, run:**
 bash
-Copy
 pip install biopython
+
 Scripts
 1. FASTA to CSV Conversion
 Description: Converts a FASTA file into a CSV table. The CSV will contain two columns:
