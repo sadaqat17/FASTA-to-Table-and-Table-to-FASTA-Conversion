@@ -1,44 +1,34 @@
-# Import argparse module to allow parsing of command-line arguments
-import argparse
-# Import SeqRecord and Seq from Biopython to handle sequence records and sequences
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-# Import the csv module to read CSV files in Python
-import csv
+# Importing necessary libraries
+from Bio import SeqIO  # SeqIO is used to handle sequence data, though it's not used directly here
+import csv  # CSV module to handle reading CSV files
+import argparse  # argparse to handle command-line arguments
 
-# Set up argument parsing
-parser = argparse.ArgumentParser(description="Convert CSV table to FASTA format")
-# Define the command-line argument for the input CSV file, which is required
-parser.add_argument("-i", "--input", required=True, help="Input CSV file")
-# Define the command-line argument for the output FASTA file, which is also required
-parser.add_argument("-o", "--output", required=True, help="Output FASTA file")
-# Parse the arguments from the command line
-args = parser.parse_args()
+# Setting up the argument parser to handle user input for CSV file and output FASTA file
+parser = argparse.ArgumentParser(description="Convert CSV table to FASTA")  
+parser.add_argument("-i", "--input", required=True, help="Input CSV file")  # Input CSV file argument
+parser.add_argument("-o", "--output", required=True, help="Output FASTA file")  # Output FASTA file argument
+args = parser.parse_args()  # Parse the command-line arguments
 
-# Input and output file paths are assigned based on the parsed arguments
-input_table = args.input
-output_fasta = args.output
+# Assign input and output file paths from parsed arguments
+input_file = args.input
+output_file = args.output
 
-# Open the input CSV file for reading
-with open(input_table, "r") as csvfile:
-    # Create a CSV reader object to read the file
-    reader = csv.reader(csvfile)
-    # Read the header row (skip it since we only need data rows)
-    header = next(reader)
-    
-    # Open the output FASTA file in write mode
-    with open(output_fasta, "w") as fasta_file:
-        # Iterate through each row in the CSV
+# Opening the input CSV file for reading
+with open(input_file, "r") as csvfile:
+    reader = csv.reader(csvfile)  # Create a CSV reader object to iterate through rows
+    # Opening the output FASTA file for writing
+    with open(output_file, "w") as fasta_out:
+        # Looping through each row in the CSV file
         for row in reader:
-            # The first column should be the accession (ID), and the second column should be the sequence
-            accession = row[0]
-            sequence = row[1]
-            
-            # Create a SeqRecord object with the accession as the ID and the sequence
-            seq_record = SeqRecord(Seq(sequence), id=accession, description="")
-            
-            # Write the SeqRecord object in FASTA format to the output file
-            fasta_file.write(seq_record.format("fasta"))
-
-# Print a success message indicating the output file location
-print(f"CSV converted to FASTA successfully! Output saved to {output_fasta}")
+            if row:  # Check if the row is not empty
+                accession = row[0]  # The first column is assumed to be the accession ID
+                sequence = row[1]  # The second column is assumed to be the sequence itself
+                if accession and sequence:  # Ensure both accession and sequence are non-empty
+                    # Write the FASTA formatted sequence to the output file
+                    fasta_out.write(f">{accession}\n{sequence}\n")
+                else:
+                    # If either accession or sequence is missing, skip this entry and print a warning
+                    print(f"Skipping malformed entry: {row}")
+    
+# Once the conversion is complete, notify the user and show the output file location
+print(f"Conversion to FASTA complete! Output saved to {output_file}")
