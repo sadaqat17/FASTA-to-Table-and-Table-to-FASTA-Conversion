@@ -12,6 +12,7 @@ This repository contains Python scripts to convert biological sequence data betw
 
 Before running these scripts, ensure you have Python installed and the necessary dependencies:
 -Python 3.x (preferably 3.6+)
+
 -Biopython library
 
 **To install the required library**
@@ -21,6 +22,7 @@ pip install biopython
 **Scripts**
 
 **1. FASTA to CSV Conversion**
+
 Description: Converts a FASTA file into a CSV table. The CSV will contain two columns:
 
 **Accession:** Sequence ID (or header)
@@ -39,6 +41,7 @@ python Fasta_to_table_convert.py -i input.fasta -o output.csv
 -o or --output: Path where the output CSV file will be saved.
 
 **2. CSV to FASTA Conversion**
+
 Description: Converts a CSV or Table file into a FASTA table. 
 
 **Usage:** 
